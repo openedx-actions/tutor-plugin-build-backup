@@ -1,6 +1,9 @@
+#!/bin/bash
+#---------------------------------------------------------
 #
 # install tutor and set tutor-specific environment variables.
 #
+#---------------------------------------------------------
 pip install --upgrade pyyaml
 echo "TUTOR_ROOT=$GITHUB_WORKSPACE/tutor" >> $GITHUB_ENV
 pip install tutor
