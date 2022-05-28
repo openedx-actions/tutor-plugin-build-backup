@@ -1,3 +1,7 @@
+#---------------------------------------------------------
+# - Setup AWS CLI environment using the secrets from this repo.
+# - Try to build the image.
+#---------------------------------------------------------
 name: Test this action
 
 on: workflow_dispatch
