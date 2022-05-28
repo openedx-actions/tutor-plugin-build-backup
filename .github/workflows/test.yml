@@ -23,7 +23,8 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       # This action
-      - name: Build the image and upload to AWS ECR
-        uses: openedx-actions/tutor-plugin-build-backup
+      - name: Use the action in this repo to Build the image and upload to AWS ECR
+        uses: ./.github/actions/tutor-plugin-build-backup
         with:
           aws-ecr-registry: ${{ secrets.aws-ecr-registry }}
+        continue-on-error: false
