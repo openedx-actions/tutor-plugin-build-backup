@@ -26,5 +26,5 @@ jobs:
       - name: Use the action in this repo to Build the image and upload to AWS ECR
         uses: ./
         with:
-          aws-ecr-registry: ${{ secrets.aws-ecr-registry }}
+          aws-ecr-registry: ${{ secrets.AWS_ECR_REGISTRY }}
         continue-on-error: false
