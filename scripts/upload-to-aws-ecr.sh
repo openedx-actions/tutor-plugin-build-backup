@@ -2,5 +2,5 @@
 # Push and tag the newly created Docker image.
 #
 tutor images push backup
-docker tag ${ECR_REGISTRY}/${ECR_REPOSITORY}:${REPOSITORY_TAG} ${ECR_REGISTRY}/${ECR_REPOSITORY}:latest
-docker push ${ECR_REGISTRY}/${ECR_REPOSITORY}:latest
+docker tag ${AWS_ECR_REGISTRY}/${AWS_ECR_REPOSITORY}:${REPOSITORY_TAG} ${AWS_ECR_REGISTRY}/${AWS_ECR_REPOSITORY}:latest
+docker push ${AWS_ECR_REGISTRY}/${AWS_ECR_REPOSITORY}:latest
