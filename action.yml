@@ -49,9 +49,11 @@ runs:
       with:
         aws-ecr-repository: ${{ inputs.aws-ecr-repository }}
 
-    - name: Intialize AWS_ECR_REGISTRY
+    - name: Intialize environment variables
+      id: init-env
       run: |
         echo "AWS_ECR_REGISTRY=${{ steps.login-ecr.outputs.registry }}" >> $GITHUB_ENV
+      shell: bash
 
     - name: Install Tutor
       id: install-tutor
