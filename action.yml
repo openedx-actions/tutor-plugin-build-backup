@@ -1,0 +1,57 @@
+#
+# see https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions
+#
+name: '"Build Tutor Backup & Restore Plugin" Action For GitHub Actions'
+description: 'Build a Docker container for the hastexo Backup plugin and upload to AWS ECR'
+branding:
+  icon: 'box'
+  color: 'blue'
+inputs:
+  aws-ecr-registry:
+    description: 'The URI of the AWS Elastic Container Registry (ECR). Example 012345678912.dkr.ecr.us-east-2.amazonaws.com'
+    required: true
+  aws-ecr-repository:
+    description: 'The name of the repository inside your AWS Elastic Container Registry (ECR) in which the newly created container will be uploaded and tagged. Defaults to "openedx_backup"'
+    required: false
+    default: 'openedx_backup'
+outputs:
+  docker-container-url:
+    description: 'The URL of the AWS ECR Docker container that was created and uploaded'
+    value: ${{ steps.random-number-generator.outputs.random-id }}
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v1
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Install Tutor
+      run: $GITHUB_ACTION_PATH/scripts/install-tutor.sh
+      shell: bash
+
+    - name: Set repository tag
+      run: |
+        echo "REPOSITORY_TAG=$TUTOR_VERSION-$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Install hastexo Backup plugin
+      run: $GITHUB_ACTION_PATH/scripts/install-hastexo-backup.sh
+      shell: bash
+
+    - name: Build the image
+      run: tutor images build backup
+      shell: bash
+
+    - name: Push the image
+      run: $GITHUB_ACTION_PATH/scripts/upload-to-aws-ecr.sh
+      shell: bash
+
+    - name: Docker image:tag
+      run: |
+        echo "Docker image: ${ECR_REGISTRY}/${ECR_REPOSITORY}:${REPOSITORY_TAG}"
+      shell: bash
