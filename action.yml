@@ -32,6 +32,12 @@ runs:
   steps:
     - uses: actions/checkout@v1
 
+    - name: Setup environment
+      run: |
+        echo "PLUGIN_RELEASE=${{ inputs.hastexo-backup-release }}" >> $GITHUB_ENV
+        echo "AWS_ECR_REGISTRY=${{ inputs.aws-ecr-registry }}" >> $GITHUB_ENV
+        echo "AWS_ECR_REPOSITORY=${{ inputs.aws-ecr-repository }}" >> $GITHUB_ENV
+
     - name: Set up Docker Buildx
       id: setup-docker
       uses: docker/setup-buildx-action@v1
