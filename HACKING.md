@@ -21,6 +21,17 @@ to be used in commit messages via
 How to run tests
 ----------------
 
+Add the following ```Repository Secrets``` to ```Settings -> Secrets -> Actions``` in your forked repository. Replace these sample values with your own:
+
+```bash
+    AWS_ACCESS_KEY_ID=YOUR_AWS_IAM_KEY
+    AWS_SECRET_ACCESS_KEY=YOUR_AWS_IAM_SECRET
+    AWS_ECR_REGISTRY=123456789042.dkr.ecr.us-east-2.amazonaws.com
+    AWS_REGION=us-east-1
+```
+
+Launch the Github Actions Workflow in your forked repository ```Actions -> Test this action```.
+
 This repo uses [tox](https://tox.readthedocs.io/) for unit and
 integration tests. It does not install `tox` for you, you should
 follow [the installation
