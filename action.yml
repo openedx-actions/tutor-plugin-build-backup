@@ -46,8 +46,6 @@ runs:
     - name: Intialize AWS_ECR_REGISTRY
       run: |
         echo "AWS_ECR_REGISTRY=${{ steps.login-ecr.outputs.registry }}" >> $GITHUB_ENV
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
     - name: Install Tutor
       id: install-tutor
