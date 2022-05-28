@@ -26,5 +26,6 @@ jobs:
       - name: Use the action in this repo to Build the image and upload to AWS ECR
         uses: ./
         with:
-          aws-ecr-registry: ${{ secrets.AWS_ECR_REGISTRY }}
+          aws-ecr-repo: openedx_backup
+          hastexo-backup-release: 'v0.0.6'
         continue-on-error: false

@@ -12,9 +12,6 @@ branding:
   icon: 'cloud'
   color: 'orange'
 inputs:
-  aws-ecr-registry:
-    description: 'The URI of the AWS Elastic Container Registry (ECR). Example 012345678912.dkr.ecr.us-east-2.amazonaws.com'
-    required: true
   aws-ecr-repository:
     description: 'The name of the repository inside your AWS Elastic Container Registry (ECR) in which the newly created container will be uploaded and tagged. Defaults to "openedx_backup"'
     required: false
@@ -35,7 +32,6 @@ runs:
     - name: Setup environment
       run: |
         echo "PLUGIN_RELEASE=${{ inputs.hastexo-backup-release }}" >> $GITHUB_ENV
-        echo "AWS_ECR_REGISTRY=${{ inputs.aws-ecr-registry }}" >> $GITHUB_ENV
         echo "AWS_ECR_REPOSITORY=${{ inputs.aws-ecr-repository }}" >> $GITHUB_ENV
       shell: bash
 
@@ -46,6 +42,12 @@ runs:
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Intialize AWS_ECR_REGISTRY
+      run: |
+        echo "AWS_ECR_REGISTRY=${{ steps.login-ecr.outputs.registry }}" >> $GITHUB_ENV
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
     - name: Install Tutor
       id: install-tutor
