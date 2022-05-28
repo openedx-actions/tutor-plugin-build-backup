@@ -43,6 +43,12 @@ runs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
+    - name: Create the AWS ECR repository
+      id: create-repository
+      uses: openedx-actions/aws-ecr-create
+      with:
+        aws-ecr-repository: ${{ inputs.aws-ecr-repository }}
+
     - name: Intialize AWS_ECR_REGISTRY
       run: |
         echo "AWS_ECR_REGISTRY=${{ steps.login-ecr.outputs.registry }}" >> $GITHUB_ENV
