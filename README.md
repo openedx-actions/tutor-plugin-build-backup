@@ -38,5 +38,5 @@ jobs:
       - name: Build the image and upload to AWS ECR
         uses: openedx-actions/tutor-plugin-build-backup
         with:
-          AWS_ECR_REGISTRY: 123456789042.dkr.ecr.us-east-2.amazonaws.com
+          aws-ecr-registry: 123456789042.dkr.ecr.us-east-2.amazonaws.com
 ```

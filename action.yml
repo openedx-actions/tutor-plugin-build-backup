@@ -1,27 +1,32 @@
+#------------------------------------------------------------------------------
 #
-# see https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions
 #
+# see
+#  - https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions
+#  - https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
+#
+#------------------------------------------------------------------------------
 name: '"Build Tutor Backup & Restore Plugin" Action For GitHub Actions'
 description: 'Build a Docker container for the hastexo Backup plugin and upload to AWS ECR'
 branding:
   icon: 'box'
   color: 'blue'
 inputs:
-  AWS_ECR_REGISTRY:
+  aws-ecr-registry:
     description: 'The URI of the AWS Elastic Container Registry (ECR). Example 012345678912.dkr.ecr.us-east-2.amazonaws.com'
     required: true
-  AWS_ECR_REPOSITORY:
+  aws-ecr-repository:
     description: 'The name of the repository inside your AWS Elastic Container Registry (ECR) in which the newly created container will be uploaded and tagged. Defaults to "openedx_backup"'
     required: false
     default: 'openedx_backup'
-  HASTEXO_BACKUP_RELEASE:
+  hastexo-backup-release:
     description: 'the release of https://github.com/hastexo/tutor-contrib-backup'
     required: false
     default: 'v0.0.6'
 outputs:
   docker-container-url:
     description: 'The URL of the AWS ECR Docker container that was created and uploaded'
-    value: ${DOCKER_IMAGE}
+    value: ${{ steps.docker-image.outputs.uri }}
 runs:
   using: "composite"
   steps:
@@ -64,5 +69,6 @@ runs:
     - name: Docker image:tag
       id: docker-image
       run: |
-        echo "DOCKER_IMAGE=${AWS_ECR_REGISTRY}/${AWS_ECR_REPOSITORY}:${REPOSITORY_TAG}" >> $GITHUB_ENV
+        echo "DOCKER_IMAGE=${{ inputs.aws-ecr-registry }}/${{ inputs.aws-ecr-repository }}:${REPOSITORY_TAG}" >> $GITHUB_ENV
+        echo "::set-output name=uri::$(echo $DOCKER_IMAGE)"
       shell: bash

@@ -26,7 +26,7 @@ Add the following ```Repository Secrets``` to ```Settings -> Secrets -> Actions`
 ```bash
     AWS_ACCESS_KEY_ID=YOUR_AWS_IAM_KEY
     AWS_SECRET_ACCESS_KEY=YOUR_AWS_IAM_SECRET
-    AWS_ECR_REGISTRY=123456789042.dkr.ecr.us-east-2.amazonaws.com
+    aws-ecr-registry=123456789042.dkr.ecr.us-east-2.amazonaws.com
     AWS_REGION=us-east-1
 ```
 

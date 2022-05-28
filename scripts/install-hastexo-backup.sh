@@ -6,6 +6,6 @@
 # public repository in a later step.
 #
 #---------------------------------------------------------
-pip install git+https://github.com/hastexo/tutor-contrib-backup@${HASTEXO_BACKUP_RELEASE}
+pip install git+https://github.com/hastexo/tutor-contrib-backup@${{ inputs.hastexo-backup-release }}
 tutor plugins enable backup
-tutor config save --set BACKUP_DOCKER_IMAGE=${AWS_ECR_REGISTRY}/${AWS_ECR_REPOSITORY}:${REPOSITORY_TAG}
+tutor config save --set BACKUP_DOCKER_IMAGE=${{ inputs.aws-ecr-registry }}/${{ inputs.aws-ecr-repository }}:${REPOSITORY_TAG}
