@@ -14,7 +14,7 @@
 
 
 ```yaml
-name: Example Build Docker image for Tutor "Backup & Restore" Plugin
+name: Example workflow
 
 on: workflow_dispatch
 
@@ -34,9 +34,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.THE_NAME_OF_YOUR_AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
 
-      # This action
+      # This action.
+      # Note that both inputs are optional.
+      #  - aws-ecr-repo: default value is openedx_backup
+      #  - hastexo-backup-release: default is latest stable
       - name: Build the image and upload to AWS ECR
         uses: openedx-actions/tutor-plugin-build-backup
         with:
-          aws-ecr-registry: 123456789042.dkr.ecr.us-east-2.amazonaws.com
+          aws-ecr-repo: openedx_backup
+          hastexo-backup-release: 'v0.0.6'
 ```
