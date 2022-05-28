@@ -1,6 +1,6 @@
 #
 # Download and tutor-install the hastexo Backup & Restore plugin.
-# Set the URL of the Docker image so that we can push to a 
+# Set the URL of the Docker image so that we can push to a
 # public repository in a later step.
 #
 pip install git+https://github.com/hastexo/tutor-contrib-backup@${HASTEXO_BACKUP_RELEASE}
