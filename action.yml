@@ -45,7 +45,7 @@ runs:
 
     - name: Create the AWS ECR repository
       id: create-repository
-      uses: openedx-actions/aws-ecr-create
+      uses: openedx-actions/aws-ecr-create@v0.0.1
       with:
         aws-ecr-repository: ${{ inputs.aws-ecr-repository }}
 
