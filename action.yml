@@ -9,8 +9,8 @@
 name: '"Build Tutor Backup & Restore Plugin" Action For GitHub Actions'
 description: 'Build a Docker container for the hastexo Backup plugin and upload to AWS ECR'
 branding:
-  icon: 'box'
-  color: 'blue'
+  icon: 'cloud'
+  color: 'orange'
 inputs:
   aws-ecr-registry:
     description: 'The URI of the AWS Elastic Container Registry (ECR). Example 012345678912.dkr.ecr.us-east-2.amazonaws.com'
