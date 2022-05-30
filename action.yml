@@ -6,8 +6,8 @@
 #  - https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
 #
 #------------------------------------------------------------------------------
-name: '"Build Tutor Open edX Micro Front-end (MFE) Plugin" Action For GitHub Actions'
-description: 'Use Tutor to build a Docker container for the Open edX Micro Front-end plugin, then upload to AWS ECR'
+name: '"Build Tutor Backup Plugin" Action For GitHub Actions'
+description: 'Use Tutor to build a Docker container for the hastexo Backup & Restore plugin, then upload to AWS ECR'
 branding:
   icon: 'cloud'
   color: 'orange'
@@ -24,7 +24,7 @@ inputs:
   aws-ecr-repository:
     description: 'The name of the repository inside your AWS Elastic Container Registry (ECR) in which the newly created container will be uploaded and tagged. Defaults to "openedx_backup"'
     required: false
-    default: 'openedx_mfe'
+    default: 'openedx_backup'
 outputs:
   docker-container-url:
     description: 'The URL of the AWS ECR Docker container that was created and uploaded'
