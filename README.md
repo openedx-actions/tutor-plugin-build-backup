@@ -48,7 +48,7 @@ jobs:
       #  - aws-ecr-repo: default value is openedx_backup
       #  - hastexo-backup-release: default is latest stable
       - name: Build the image and upload to AWS ECR
-        uses: openedx-actions/tutor-plugin-build-backup
+        uses: openedx-actions/tutor-plugin-build-backup@v0.1.2
         with:
           aws-ecr-repo: openedx_backup
           hastexo-backup-release: 'v0.0.6'
