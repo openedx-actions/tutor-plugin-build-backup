@@ -5,5 +5,5 @@
 #
 #---------------------------------------------------------
 tutor images push backup
-docker tag ${AWS_ECR_REGISTRY}/${AWS_ECR_REPOSITORY}:${REPOSITORY_TAG} ${AWS_ECR_REGISTRY}/${AWS_ECR_REPOSITORY}:latest
-docker push ${AWS_ECR_REGISTRY}/${AWS_ECR_REPOSITORY}:latest
+docker tag ${AWS_ECR_REGISTRY_BACKUP}/${AWS_ECR_REPOSITORY_BACKUP}:${REPOSITORY_TAG_BACKUP} ${AWS_ECR_REGISTRY_BACKUP}/${AWS_ECR_REPOSITORY_BACKUP}:latest
+docker push ${AWS_ECR_REGISTRY_BACKUP}/${AWS_ECR_REPOSITORY_BACKUP}:latest
