@@ -8,4 +8,4 @@
 #---------------------------------------------------------
 pip install git+https://github.com/hastexo/tutor-contrib-backup@${PLUGIN_RELEASE}
 tutor plugins enable backup
-tutor config save --set BACKUP_DOCKER_IMAGE=${AWS_ECR_REGISTRY}/${AWS_ECR_REPOSITORY}:${REPOSITORY_TAG}
+tutor config save --set BACKUP_DOCKER_IMAGE=${AWS_ECR_REGISTRY_BACKUP}/${AWS_ECR_REPOSITORY_BACKUP}:${REPOSITORY_TAG_BACKUP}
