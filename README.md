@@ -33,11 +33,11 @@ jobs:
 
     steps:
       # required antecedent
-      - uses: actions/checkout@v3.5.0
+      - uses: actions/checkout
 
       # required antecedent
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials
         with:
           aws-access-key-id: ${{ secrets.THE_NAME_OF_YOUR_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.THE_NAME_OF_YOUR_AWS_SECRET_ACCESS_KEY }}
@@ -45,14 +45,14 @@ jobs:
 
       # install and configure tutor and kubectl
       - name: Configure Github workflow environment
-        uses: openedx-actions/tutor-k8s-init@v1.0.8
+        uses: openedx-actions/tutor-k8s-init
 
       # This action.
       # Note that both inputs are optional.
       #  - aws-ecr-repo: default value is openedx_backup
       #  - hastexo-backup-release: default is latest stable
       - name: Build the image and upload to AWS ECR
-        uses: openedx-actions/tutor-plugin-build-backup@v0.1.8
+        uses: openedx-actions/tutor-plugin-build-backup
         with:
           aws-ecr-repo: openedx_backup
           hastexo-backup-release: 'v0.0.6'
