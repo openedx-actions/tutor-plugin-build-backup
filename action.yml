@@ -102,4 +102,4 @@ runs:
       id: docker-image
       shell: bash
       run: |
-        echo "::set-output name=uri::$(echo $DOCKER_IMAGE_BACKUP)"
+        echo "uri=${DOCKER_IMAGE_BACKUP}" >> $GITHUB_OUTPUT
